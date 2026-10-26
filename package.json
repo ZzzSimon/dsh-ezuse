@@ -1,0 +1,47 @@
+{
+  "name": "dsh-ezuse",
+  "version": "0.2.0",
+  "private": true,
+  "description": "DSH 使用便捷性增强：多工作区（一个会话可挂载多个目录，并对其可写）。",
+  "type": "module",
+  "main": "./index.js",
+  "exports": {
+    ".": "./index.js",
+    "./client": "./client.js",
+    "./client.js": "./client.js",
+    "./dev.js": "./dev.js",
+    "./dev.js*": "./dev.js*",
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.js",
+    "client.js",
+    "dev.js",
+    "lib",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "scripts": {
+    "test": "node test/pure-layers.test.mjs && node test/plugin.test.mjs && node test/http.test.mjs && node test/client.test.mjs && node test/dev-entry.test.mjs && node test/mode-gate.test.mjs && node test/config.test.mjs && node test/grants.test.mjs",
+    "check": "node --check index.js && node --check client.js && node --check lib/paths.js && node --check lib/store.js && node --check lib/fence.js && node --check lib/grants.js && node --check lib/http.js"
+  },
+  "meta": {
+    "title": "dsh-ezuse 便捷增强",
+    "description": "多工作区：把一个会话的工作区扩展成多个目录，文件工具与 shell 都可写，并在对话区提供「项目目录」页签。"
+  },
+  "dsh": {
+    "id": "dsh-ezuse",
+    "name": "dsh-ezuse 便捷增强",
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": true,
+      "inject": [
+        "@deepseek-ai/dsh-client-ui-conversation"
+      ]
+    }
+  }
+}
